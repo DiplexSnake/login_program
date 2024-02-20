@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <map>
 
 //using namespace std;
 
@@ -10,31 +11,53 @@ std::string existing_user_pass = "1234";
 std::string username;
 std::string password;
 
+std::vector<std::string> usernme = {"hunter", "izzy"};     //position based list
+std::vector<std::string> passwrd = {"1234", "4321"};
+
+std::map<std::string, std::string> login;
+
+int totalusers = 2;
+
+
+
 bool isValidCredentials(std::string user, std::string pass) {
 
-    if (user != existing_users){
-        std::cout << "incorrect username";
-        return false;
-    }
+    for (int i = 0; i < totalusers; i++){
+        
+        if (user == usernme[i]){
+            if (login[user] == pass){
+                std::cout << "You have logged in!\n";
+                return true;
+            }
+            else 
+                std::cout << "incorrect password\n";
+                return false;
+        }
+      
+    }      
+    
 
-    if (pass != existing_user_pass){
-        std::cout << "incorrect passwordhunhun\n";
-        return false;
-    }
-
-    if (user == existing_users && pass == existing_user_pass){
-        std::cout << "correct username and password\n";
-        return true;
-    }
-
-    std::cout << "end of func";
+    std::cout << "invalid login\n";
     return false;
-    //Password and Username Match!
+    //Password and Username dont match
 }
+void printUserInfo(){
 
+    for ( auto item : login )
+        {
+            //print out the name
+            std::cout << item.first << " : " << item.second;   
+            std::cout << std::endl;
+    }
+}
 int main()
 {
-    
+login[usernme[0]] = passwrd[0];
+login[usernme[1]] = passwrd[1];
+
+printUserInfo();
+
+
 std::cout << "input username\n";
 std::cin >> username;
 std::cout << "input password\n";
