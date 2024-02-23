@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 #include <map>
+#include "sha256.h"
+
 
 //using namespace std;
 
@@ -50,7 +52,7 @@ void printUserInfo(){
             std::cout << std::endl;
     }
 }
-int main()
+int main(int, char**)
 {
 login[usernme[0]] = passwrd[0];
 login[usernme[1]] = passwrd[1];
@@ -58,12 +60,19 @@ login[usernme[1]] = passwrd[1];
 printUserInfo();
 
 
+
+
 std::cout << "input username\n";
 std::cin >> username;
 std::cout << "input password\n";
 std::cin >> password;
 
+ // create a new hashing object
+SHA256 sha256;
 
+  // hashing an std::string
+std::cout << sha256("Hello World") << std::endl;
+  // => a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e
 
 std::cout << isValidCredentials(username, password);
 
